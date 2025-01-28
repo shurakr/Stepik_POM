@@ -1,5 +1,5 @@
 import pytest
-from .pages.main_page import MainPage
+from pages.main_page import MainPage
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -27,3 +27,7 @@ def test_guest_can_go_to_login_page(browser):
     page.open()  # открываем страницу
     page.go_to_login_page()  # выполняем метод страницы — переходим на страницу логина
     page.should_be_login_link()
+
+
+if __name__ == "__main__":
+    pytest.main()
