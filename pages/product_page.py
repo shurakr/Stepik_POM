@@ -22,9 +22,11 @@ class ProductPage(BasePage):
         success_message = self.browser.find_element(
             *ProductPageLocators.SUCCESS_MESSAGE
         ).text
-        assert (
-            product_name in success_message
-        ), "Product name is not in the success message"
+        template = "{} has been added to your basket."
+        message = self.browser.find_element(*ProductPageLocators.SUCCESS_MESSAGE).text
+        assert template.format(message) == template.format(
+            product_name
+        ), f"{product_name} is not in the success message on page {self.url}"
 
     def should_see_basket_total(self, product_price):
         basket_total = self.browser.find_element(*ProductPageLocators.BASKET_TOTAL).text
